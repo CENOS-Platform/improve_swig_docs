@@ -375,7 +375,6 @@ if __name__ == '__main__':
         if reading_docstring:
             if quote:
                 #end parsing
-                eprint("ENDING PARSING line",line)
                 reading_docstring = False
                 #empty line, could be the start or the end of the function signature
                 if len(current_signature) > 0:
@@ -404,8 +403,6 @@ if __name__ == '__main__':
                     current_docstring.append(ln)
         elif quote:
             if ln.count('"""') == 1:
-                eprint("STARTING PARSING line",line)
-
                 reading_docstring = True
                 current_signature = []
                 current_docstring = []

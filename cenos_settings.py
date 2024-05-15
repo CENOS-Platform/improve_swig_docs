@@ -1,11 +1,11 @@
 # all of the classes defined in the package that you'd like to cross-reference
-classes = {"GeometryData", "TopoEntity"}
+classes = {"GeometryData", "TopoEntity", "MeshData"}
 
 # default prefix for class cross-references
 default_class_prefix = "cenos"
 
 # other prefixes for class cross-references
-class_prefix = {"TopoEntity": "cenos.topologyPy.TopoEntity"}
+class_prefix = {"TopoEntity": "cenos.topologyPy.TopoEntity", "MeshData": "cenos.meshPy.MeshData"}
 
 basic_types = {"int", "float", "str", "bytes", "bool"}
 
@@ -16,6 +16,7 @@ from __future__ import annotations
 """
 
 # conversions from SWIG docstrings to RST docstrings
+# arg types
 to_python_types = {
     "std::string": "str",
     "double": "float",
@@ -38,10 +39,28 @@ to_python_types = {
     "LengthUnit": "LengthUnit",
     "Group": "Group",
     "MeshStats": "MeshStats",
-    # "std::vector< std::shared_ptr< BoundaryGroup >,std::allocator< std::shared_ptr< BoundaryGroup > > >": "BoundaryGroup",
-    # "std::shared_ptr< GeometryData >": "GeometryData",
+    "std::vector< std::shared_ptr< GeometryData > >::value_type const &": "list[GeometryData]",
+    "geometryDataVector": "list[GeometryData]",
+    "LumpedElementPoint": "LumpedElementPoint",
+    "lumpedElementPointVector": "list[LumpedElementPoint]",
+    "Operation": "Operation",
+    "operationVector": "list[Operation]",
+    "std::map< std::shared_ptr< TopoEntity >,std::shared_ptr< TopoEntity > >::key_type const &": "dict[TopoEntity, TopoEntity]",
+    "topoentityTopoentityMap": "dict[TopoEntity, TopoEntity]",
+    "VecString": "list[str]",
+    "std::vector< int,std::allocator< int > > *": "list[int]",
+    "std::vector< int >::value_type const &": "list[int]",
+    "std::vector< int >::value_type": "list[int]",
+    "VecInt": "list[int]",
+    "std::map< std::string,int >::key_type const &": "dict[str, int]",
+    "map_string_int": "dict[str, int]",
+    "std::vector< std::shared_ptr< MeshEntity > >::value_type const &": "list[MeshEntity]",
+    "std::vector< std::shared_ptr< MeshEntity > >::value_type": "list[MeshEntity]",
+    "MeshEntityVec": "list[MeshEntity]",
+    "std::vector< std::shared_ptr< MeshEntity >,std::allocator< std::shared_ptr< MeshEntity > > >": "list[MeshEntity]",
 }
 
+# return types
 to_python_type_hints = {
     "void": "None",
     "bool": "bool",
@@ -108,10 +127,28 @@ to_python_type_hints = {
     "std::map< std::string,std::vector< TopoDS_Shape,std::allocator< TopoDS_Shape > >,std::less< std::string >,std::allocator< std::pair< std::string const,std::vector< TopoDS_Shape,std::allocator< TopoDS_Shape > > > > >": "dict[str, list[TopoDS_Shape]]",
     "GeometryData::Mode": "GeometryData.Mode",
     "std::map< TopoEntity_,TopoDS_Shape,std::less< TopoEntity_ >,std::allocator< std::pair< TopoEntity_ const,TopoDS_Shape > > >": "dict[TopoEntity, TopoDS_Shape]", 
-    "std::vector< LumpedElement::Point,std::allocator< LumpedElement::Point > >": "list[LumpedElement.Point]"
-    # "std::shared_ptr< GeometryData >": "GeometryData",
-    # "std::shared_ptr< TopoEntity >": "TopoEntity",
-    # "'std::vector< std::shared_ptr< DomainGroup >,std::allocator< std::shared_ptr< DomainGroup > > >'": "list[DomainGroup]",
+    "std::vector< LumpedElement::Point,std::allocator< LumpedElement::Point > >": "list[LumpedElement.Point]",
+    "std::vector< std::shared_ptr< GeometryData >,std::allocator< std::shared_ptr< GeometryData > > > *": "list[GeometryData]",
+    "std::vector< std::shared_ptr< GeometryData > >::value_type": "list[GeometryData]",
+    "std::vector< LumpedElementPoint,std::allocator< LumpedElementPoint > > *": "list[LumpedElementPoint]",
+    "std::vector< LumpedElementPoint >::value_type const &": "list[LumpedElementPoint]",
+    "std::vector< LumpedElementPoint >::value_type": "list[LumpedElementPoint]",
+    "std::vector< Operation,std::allocator< Operation > > *": "list[Operation]",
+    "std::vector< Operation >::value_type const &": "list[Operation]",
+    "std::vector< Operation >::value_type": "list[Operation]",
+    "std::map< std::shared_ptr< TopoEntity >,std::shared_ptr< TopoEntity > >::mapped_type const &": "dict[TopoEntity, TopoEntity]",
+    "std::map< TopoEntity_,TopoEntity_,std::less< TopoEntity_ >,std::allocator< std::pair< TopoEntity_ const,TopoEntity_ > > >": "dict[TopoEntity, TopoEntity]",
+    "unsigned long": "int",
+    "std::vector< GeometryData_,std::allocator< GeometryData_ > >": "list[GeometryData]",
+    "GeometryData_": "GeometryData",
+    "std::vector< LumpedElementPoint,std::allocator< LumpedElementPoint > >": "list[LumpedElementPoint]",
+    "std::shared_ptr< MeshEntity >": "MeshEntity",
+    "std::vector< std::shared_ptr< MeshEntity >,std::allocator< std::shared_ptr< MeshEntity > > > *": "list[MeshEntity]",
+    "std::map< std::string,int >::mapped_type const &": "dict[str, int]",
+    "GeometryMover": "GeometryMover",
+    "std::map< std::string,int,std::less< std::string >,std::allocator< std::pair< std::string const,int > > >": "dict[str, int]",
+    "std::shared_ptr< MeshData >": "MeshData",
+    "shape_vec": "list[TopoDS_Shape]",
 }
 
 """SWIG's bindings of STL has a bunch of garbage"""
